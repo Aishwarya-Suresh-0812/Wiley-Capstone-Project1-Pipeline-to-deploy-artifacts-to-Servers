@@ -3,6 +3,19 @@
   remote_user: root
   become: yes
   tasks:
+  
+  - name: Creating a Directory
+    file:
+      path: /root/gitrepo
+      state: directory
+      
+  - name: Installing git on RedHat flavour
+    yum:
+      name: git
+      state: present
+      update_cache: yes
+    when:  ansible_facts['os_family'] == "RedHat"
+    
   - name: installing tomcat CentOS
     package:
       name: tomcat
@@ -41,13 +54,13 @@
 
   - name: copying addressbook file CentOS
     copy:
-      src: /root/workspace/Capstone_Project_1A/addressbook_main/target/addressbook.war
+      src: /root/workspace/Capstone_Project_1/target/addressbook.war
       dest: /usr/share/tomcat/webapps
     when:  ansible_facts['os_family'] == "RedHat"
 
   - name: copying addressbook file Ubuntu
     copy:
-      src: /root/workspace/Capstone_Project_1A/addressbook_main/target/addressbook.war
+      src: /root/workspace/Capstone_Project_1/target/addressbook.war
       dest: /var/lib/tomcat9/webapps
     when:  ansible_facts['os_family'] == "Debian"
 
