@@ -53,13 +53,13 @@
   
   - name: copying addressbook file CentOS
     copy:
-      src: /home/ec2-user/Jenkins/workspace/Capstone_Project_1_final/target/addressbook.war
+      src: /root/workspace/Capstone_Project_1A/addressbook_main/target/addressbook.war
       dest: /usr/share/tomcat/webapps
     when:  ansible_facts['os_family'] == "RedHat"
   
   - name: copying addressbook file Ubuntu
     copy:
-      src: /home/ubuntu/Jenkins/workspace/Capstone_Project_1_final/target/addressbook.war
+      src: /root/workspace/Capstone_Project_1A/addressbook_main/target/addressbook.war
       dest: /var/lib/tomcat9/webapps
     when:  ansible_facts['os_family'] == "Debian"
   
